@@ -1,0 +1,19 @@
+doctype
+html(lang="en")
+    head
+        title Chat Socket
+        link(rel="stylesheet", type="text/css", href="/bootstrap/css/bootstrap.min.css")
+        script(type="text/javascript", src="/socket.io/socket.io.js")
+        script(type="text/javascript", src="/jquery/jquery.min.js")
+        script(type="text/javascript", src="/bootstrap/js/bootstrap.min.js")
+        script(type="text/javascript", src="/src/index.js")
+    body
+        h1 Chat Socket
+        ul#message-display
+        p
+            p: label Name: 
+                input#name-input(type="text", value="Bob")
+            p: label Message: 
+                input#message-input(type="text", size="40")
+                br
+                button#send-button Send

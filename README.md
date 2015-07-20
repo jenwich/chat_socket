@@ -2,16 +2,22 @@
 
 A chat application by socket.io
 
+## See Demo
+
+X
+
 ## How to install
 
-    git clone 
+    git clone https://github.com/jenwich/chat_socket.git
     cd chat_socket
     npm install
 
 ## How to run it
 
-    node app.js [PORT]
+    node app.js
 
-## See Demo
+## Features in Future
 
-X
+* Improve UI
+* Store old messages / History
+* Name when connect
