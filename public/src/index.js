@@ -1,36 +1,65 @@
 
-$(document).ready(function() {
-    $name = $("#name-input");
-    $message = $("#message-input");
-    $sendButton = $("#send-button");
-    $display = $("#message-display");
-    clearMessageBox();
+var server = io();
+var $nameInputPanel, $messageInputPanel, $messageDisplay;
+var $name, $message, $sendButton, $nameButton, $whosay;
+var name = "";
 
+$(document).ready(function() {
+    //Define jQuery Object
+    $nameInputPanel = $("#name-input-panel");
+    $messageInputPanel = $("#message-input-panel").hide();
+    $messageDisplay = $("#message-display").hide();
+    $name = $("#name-input");
+    $nameButton = $("#name-send");
+    $message = $("#message-input");
+    $sendButton = $("#message-send");
+    $whosay = $("#whosay");
+
+    //Input name when login
+    $name.focus();
+    $nameButton.click(function() {
+        name = $name.val();
+        if(name == "") name = "Anonymous";
+        server.emit("login", name, function() {
+            $nameInputPanel.toggle();
+            $messageInputPanel.toggle();
+            $messageDisplay.toggle();
+            $messageDisplay.html("");
+            $whosay.html(name + " say: ");
+            clearMessageBox();
+        });
+    });
+
+    //Set events
     $sendButton.click(sendMessage);
     pressEnter($message, function() {
         $sendButton.click();
     });
-    server.on("broadcast message", showMessage);
+    pressEnter($name, function() {
+        $nameButton.click();
+    });
+
+    //Broadcast events
+    server.on("broadcast message", addMessage);
+    server.on("broadcast connect", function(name) {
+        $messageDisplay.append($("<li><i>"+ name +" connected...</i></li>"));
+    });
+    server.on("broadcast disconnect", function(name) {
+        $messageDisplay.append($("<li><i>"+ name +" disconnected</i></li>"));
+    });
 });
 
-var server = io();
-var $name, $message, $sendButton, $display;
-
 function sendMessage() {
-    var name = $name.val(),
-        message = $message.val();
-    server.emit("send message", {
-        "name": name,
-        "message": message
-    }, function() {
+    var message = $message.val();
+    server.emit("send message", message, function() {
         clearMessageBox();
     });
 }
 
-function showMessage(data) {
+function addMessage(data) {
     var $li = $("<li></li>").text(data.message).
         prepend($("<b></b>").text("<"+data.name+"> "));
-    $display.append($li);
+    $messageDisplay.append($li);
 }
 
 function pressEnter(object, callback) {

@@ -4,7 +4,7 @@ A chat application by socket.io
 
 ## See Demo
 
-X
+[Click Here](http://jenwich.com:3000/)
 
 ## How to install
 
@@ -20,4 +20,3 @@ X
 
 * Improve UI
 * Store old messages / History
-* Name when connect

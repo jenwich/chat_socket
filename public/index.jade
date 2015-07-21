@@ -10,10 +10,12 @@ html(lang="en")
     body
         h1 Chat Socket
         ul#message-display
-        p
-            p: label Name: 
-                input#name-input(type="text", value="Bob")
-            p: label Message: 
-                input#message-input(type="text", size="40")
-                br
-                button#send-button Send
+        p#message-input-panel
+            label(for="message-input")
+                span#whosay Message: 
+            input#message-input(type="text", size="40") 
+            button#message-send Send
+        p#name-input-panel
+            label(for="name-input") Name: 
+            input#name-input(type="text") 
+            button#name-send Send
