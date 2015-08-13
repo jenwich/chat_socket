@@ -8,15 +8,14 @@ A chat application by socket.io
 
 ## How to install
 
-    git clone https://github.com/jenwich/chat_socket.git
-    cd chat_socket
-    npm install
+    $ git clone https://github.com/jenwich/chat_socket.git
+    $ npm install
 
 ## How to run it
 
-    node app.js
+    $ node app.js
 
-## Features in Future
+## Feature Plans
 
 * Improve UI
 * Store old messages / History
