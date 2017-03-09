@@ -5,7 +5,7 @@ var app = express();
 var server = http.Server(app);
 var io = require("socket.io").listen(server);
 var colors = require("colors/safe");
-var PORT = 3000;
+var PORT = 3001;
 
 server.listen(PORT, function() {
     console.log("Listening port:", PORT, "...");
