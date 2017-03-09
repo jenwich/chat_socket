@@ -25,7 +25,7 @@ $(document).ready(function() {
             $messageInputPanel.toggle();
             $messageDisplay.toggle();
             $messageDisplay.html("");
-            $whosay.html(name + " say: ");
+            $whosay.text(name + " say: ");
             clearMessageBox();
         });
     });
@@ -42,10 +42,10 @@ $(document).ready(function() {
     //Broadcast events
     server.on("broadcast message", addMessage);
     server.on("broadcast connect", function(name) {
-        $messageDisplay.append($("<li><i>"+ name +" connected...</i></li>"));
+        $messageDisplay.append($("<li><i>"+ parseText(name) +" connected...</i></li>"));
     });
     server.on("broadcast disconnect", function(name) {
-        $messageDisplay.append($("<li><i>"+ name +" disconnected</i></li>"));
+        $messageDisplay.append($("<li><i>"+ parseText(name) +" disconnected</i></li>"));
     });
 });
 
@@ -72,4 +72,8 @@ function pressEnter(object, callback) {
 function clearMessageBox() {
     $message.val("");
     $message.focus();
+}
+
+function parseText(str) {
+    return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
