@@ -4,7 +4,7 @@ A chat application by socket.io
 
 ## See Demo
 
-[Click Here](http://jenwich.com:3000/)
+[Click Here](https://chat.jenwich.com/)
 
 ## How to install
 
